@@ -1,35 +1,77 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import axios from "axios";
+import { useEffect } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [form, setForm] = useState([]);
+  const [user, setUser] = useState({
+    name: "",
+    surname: "",
+    email: "",
+    password: "",
+  });
+
+  console.log(user);
+
+  const getData = async () => {
+    const res = await axios.get("api/travel");
+    setForm(res.data);
+  };
+
+  const authUser = async (event) => {
+    event.preventDefault();
+    const res = await axios.post("api/auth/registration", user);
+    console.log(res);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Site</h1>
+      <h2>Зарегестрируйся</h2>
+      <form
+        onSubmit={(event) => {
+          authUser(event);
+        }}
+      >
+        <input
+          type="text"
+          placeholder="name"
+          onChange={(event) => {
+            setUser((prev) => ({ ...prev, name: event.target.value }));
+          }}
+        ></input>
+        <input
+          type="text"
+          placeholder="surname"
+          onChange={(event) => {
+            setUser((prev) => ({ ...prev, surname: event.target.value }));
+          }}
+        ></input>
+        <input
+          type="email"
+          placeholder="email"
+          onChange={(event) => {
+            setUser((prev) => ({ ...prev, email: event.target.value }));
+          }}
+        ></input>
+        <input
+          type="password"
+          placeholder="password"
+          onChange={(event) => {
+            setUser((prev) => ({ ...prev, password: event.target.value }));
+          }}
+        ></input>
+        <button type="submit">отправить</button>
+      </form>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
