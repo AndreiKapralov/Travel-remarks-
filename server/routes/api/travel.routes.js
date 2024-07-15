@@ -1,12 +1,12 @@
 const travelRouter = require("express").Router();
 const { Travel } = require("../../db/models");
 const cookieParser = require("cookie-parser");
+const verifyAccessToken = require("../../middleware/verifyAccessToken");
 
 travelRouter.use(cookieParser());
 
 travelRouter.get("/", async (req, res) => {
   const { id } = req.params;
-  console.log(req);
   try {
     const result = await Travel.findAll();
     res.json(result);
@@ -15,10 +15,22 @@ travelRouter.get("/", async (req, res) => {
   }
 });
 
-travelRouter.post("/", async (req, res) => {
+travelRouter.get("/onlyUsers", verifyAccessToken, async (req, res) => {
+  const { id } = req.params;
+  user = res.locals.user;
   try {
-    const res = await Travel.create(req.body);
-    res.status(201).json(newHistory);
+    const result = await Travel.findAll({ where: { userId: user.id } });
+    res.json(result);
+  } catch ({ message }) {
+    res.json(`ошибка: ${message}`);
+  }
+});
+
+travelRouter.post("/", verifyAccessToken, async (req, res) => {
+  user = res.locals.user;
+  try {
+    const data = await Travel.create({ ...req.body, userId: user.id });
+    res.status(201).json(data);
   } catch (error) {
     console.log(error);
     res.status(400).send(error);

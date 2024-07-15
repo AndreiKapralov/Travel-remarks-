@@ -1,0 +1,21 @@
+.list {
+  display: flex;
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  object-fit: cover;
+  width: 450px;
+  height: 500px;
+  border-radius: 10px;
+}
+
+.title {
+  margin-bottom: 50px;
+  text-align: center;
+}

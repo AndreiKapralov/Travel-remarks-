@@ -1,0 +1,34 @@
+.main {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.name {
+  color: rgb(191, 172, 24);
+}
+
+.createForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+input {
+  border-radius: 20px;
+  width: 50vw;
+}
+
+button {
+  width: 100px;
+  height: 50px;
+  border-radius: 20px;
+}

@@ -42,6 +42,7 @@ authRouter.post("/login", async (req, res) => {
 
 authRouter.post("/registration", async (req, res) => {
   const { name, surname, email, password } = req.body;
+  console.log(99999,req.body)
   if (
     !name ||
     name.trim() === "" ||
