@@ -20,3 +20,26 @@ module.exports = (sequelize, DataTypes) => {
   );
   return User;
 };
+
+
+// "use strict";
+
+// /** @type {import('sequelize-cli').Migration} */
+// module.exports = {
+//   async up(queryInterface, Sequelize) {
+//     queryInterface.bulkInsert("Products", [
+//       {
+//         userId: 1,
+//         name: "Iphone 15 pro max",
+//         photo:
+//           "https://appdom.ru/image/cache/catalog/iphone/ip15/apple-iphone-15-blue-1x-1200x630.jpg",
+//         description: "super phone",
+//         price: "1500",
+//       },
+//     ]);
+//   },
+
+//   async down(queryInterface, Sequelize) {
+//     queryInterface.bulkDelete("Products");
+//   },
+// };

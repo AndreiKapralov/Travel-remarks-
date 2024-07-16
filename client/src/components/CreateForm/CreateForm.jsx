@@ -71,7 +71,7 @@ function CreateForm() {
             }));
           }}
         ></input>
-        <button type="submit" placeholder="">
+        <button type="submit">
           отправить
         </button>
       </form>

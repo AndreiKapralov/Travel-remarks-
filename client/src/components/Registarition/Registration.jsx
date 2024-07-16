@@ -21,19 +21,19 @@ function Registration() {
 
   const createNewUser = async (event) => {
     event.preventDefault();
-    // if (
-    //   userForm.name === ""
-    //   // userForm.surname ===""||
-    //   // userForm.email ===""||
-    //   // userForm.password === ""
-    // ) {
-    //   setValidateForm(true);
-    //   return;
-    // }
-    // if (userForm.password.length < 5) {
-    //   setValidatePassword(true);
-    //   return;
-    // }
+    if (
+      userForm.name === "" ||
+      userForm.surname ===""||
+      userForm.email ===""||
+      userForm.password === ""
+    ) {
+      setValidateForm(true);
+      return;
+    }
+    if (userForm.password.length < 5) {
+      setValidatePassword(true);
+      return;
+    }
     try {
       const data = await axios.post("api/auth/registration", userForm);
       console.log(data);
